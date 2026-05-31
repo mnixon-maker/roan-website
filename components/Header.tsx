@@ -32,7 +32,11 @@ export default function Header() {
     setOpen(false);
     const el = document.querySelector(href);
     if (!el) return;
-    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: Element, o?: object) => void } }).__lenis;
+    const lenis = (
+      window as unknown as {
+        __lenis?: { scrollTo: (t: Element, o?: object) => void };
+      }
+    ).__lenis;
     if (lenis) lenis.scrollTo(el as Element, { offset: -80 });
     else el.scrollIntoView({ behavior: "smooth" });
   };
@@ -41,8 +45,12 @@ export default function Header() {
     <>
       <header className={`header${solid ? " is-solid" : ""}`}>
         <div className="header-inner wrap">
-          <button className="brand" onClick={() => go("#top")} aria-label="Roan home">
-            <Signature className="brand-mark" tone={solid ? "#c10016" : "#f4f2ec"} />
+          <button
+            className="brand"
+            onClick={() => go("#top")}
+            aria-label="Roan home"
+          >
+            <Signature className="brand-mark" tone="#c10016" />
           </button>
 
           <nav className="nav" aria-label="Primary">
@@ -54,7 +62,10 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
-            <button className="btn btn-soft header-cta" onClick={() => go("#sample")}>
+            <button
+              className="btn btn-soft header-cta"
+              onClick={() => go("#sample")}
+            >
               Get a sample
             </button>
             <button
@@ -62,16 +73,26 @@ export default function Header() {
               aria-label="Open menu"
               onClick={() => setOpen(true)}
             >
-              <span /><span /><span />
+              <span />
+              <span />
+              <span />
             </button>
           </div>
         </div>
       </header>
 
       <div className={`drawer${open ? " is-open" : ""}`}>
-        <button className="drawer-scrim" aria-label="Close menu" onClick={() => setOpen(false)} />
+        <button
+          className="drawer-scrim"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        />
         <div className="drawer-panel" role="dialog" aria-modal="true">
-          <button className="drawer-close" aria-label="Close menu" onClick={() => setOpen(false)}>
+          <button
+            className="drawer-close"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
             ✕
           </button>
           <nav className="drawer-nav">
@@ -81,7 +102,10 @@ export default function Header() {
               </button>
             ))}
           </nav>
-          <button className="btn btn-primary drawer-cta" onClick={() => go("#sample")}>
+          <button
+            className="btn btn-primary drawer-cta"
+            onClick={() => go("#sample")}
+          >
             Get a sample →
           </button>
         </div>

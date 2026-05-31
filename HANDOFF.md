@@ -54,24 +54,48 @@ Components:
 - `components/sections/Faq.tsx` — accordion
 - `components/sections/Closing.tsx` — full-bleed parallax CTA
 
-Verified in-browser through TransitionLine: preloader, hero, origin (jar +
-parallax), TwoUp, TransitionLine all render correctly.
+Verified in-browser end-to-end (preloader → footer): preloader, hero, origin
+(jar + parallax), TwoUp, TransitionLine, Steps, Pillars (segmented control
+switching), Testimonials, Sample (Klaviyo form), Closing, Faq (accordion
+expand), and Footer all render correctly. No console errors.
 
-## Known issue to fix next
+## Resolved this session
 
-**Header is near-invisible at the very top.** The non-solid header state uses
-cream text + cream logo (designed for a dark hero), but our hero is light
-(`--paper`). At scrollY ≤ 40 the nav/logo wash out. Fix: make the non-solid
-state use dark (ink) nav text + red logo over the light hero, OR give the hero
-a darker treatment. Solid (scrolled) state already looks correct.
+**Header visibility over the light hero — FIXED.** The non-solid header state
+used cream text + cream logo (designed for a dark hero), washing out over the
+light (`--paper`) hero at scrollY ≤ 40. Fix applied: non-solid state now uses
+the default ink nav text + red logo, and the CTA falls back to the white
+`.btn-soft` pill. Solid (scrolled) state unchanged.
 
-- CSS: `app/sections.css` → `.header:not(.is-solid) .nav button` / `.menu-toggle span` (currently `#f4f2ec`)
-- Logo tone: `components/Header.tsx:45` — `tone={solid ? "#c10016" : "#f4f2ec"}`
+- Removed the `.header:not(.is-solid)` cream overrides in `app/sections.css`
+  (nav button color, header-cta, menu-toggle span)
+- `components/Header.tsx:45` — logo `tone="#c10016"` (always red)
 
-## Pending / not yet verified
+**One-screen sections — each section now fits the viewport without scrolling
+(desktop).** Previously Pillars (1360px), Steps (1493px), Testimonials, Sample,
+Origin, TwoUp, and Transition overflowed the screen. All section work is in
+`app/sections.css` only (no component changes):
 
-- Visually verify Steps → Footer in browser (was mid-scroll when paused)
-- Decide header-over-light-hero fix above
+- Section padding switched from `vw`-based (`clamp(80px,12vw,170px)`) to
+  `vh`-based (`clamp(48px,6vh,90px)`) so height scales with the viewport.
+- The flagged sections get `min-height: 100vh; display: flex; align-items:
+  center` to sit as centered full screens; reset to `min-height:0; display:
+  block` in the `@media (max-width: 980px)` block so mobile stacks and scrolls.
+- Section headlines (`.h2`) were wrapping to 4–7 lines because `max-width` was
+  set in `ch` (resolved against the small container font, ~358px). Fixed with a
+  px `max-width` on each `*-head` + `.h2 .accent { display: block }` so the
+  accent phrase drops to its own line → clean, predictable 2-line headlines.
+- Steps photo tiles changed from `aspect-ratio: 3/4` → `1/1`; Pillars & Sample
+  visuals are height-capped via `clamp(...vh...)` + `width:auto; justify-self:
+  center` (full-width again on mobile).
+- Verified every section fits at 1366×768 and 1440×900 (no overflow).
+
+Note: Lenis (smooth scroll) uses native window scroll, but Next HMR re-creates
+it on each edit — when scripting screenshots, `window.__lenis.destroy()` before
+`window.scrollTo` or captures land a section off.
+
+## Pending / not yet done
+
 - Real ranch photography to replace `.ph` gradient placeholders
 - Modular/future: wire Shopify Storefront API for actual commerce (kept separate from this marketing pass)
 
