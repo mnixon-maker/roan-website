@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Try Roan — Our grass-fed organ blend, on us. | Roan</title>
+<meta name="description" content="Roan is a grass-fed organ blend from our family ranch in Wyoming. We're sending samples to a small group before launch — sign up to try it." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #f4f3ef;
+  --card: #ffffff;
+  --ink: #0a0a0a;
+  --ink-2: #1a1a1a;
+  --muted: #6b6b6b;
+  --muted-2: #8e8c87;
+  --rule: #e7e4dc;
+  --rule-soft: #efece4;
+  --sky: #d8e8f1;          /* light blue accent (soft) */
+  --sky-2: #b4d2e3;          /* light blue accent (mid) */
+  --sky-ink: #2a567a;        /* readable blue text */
+  --radius: 28px;
+  --radius-sm: 16px;
+  --radius-pill: 999px;
+  --maxw: 1280px;
+  --gap: 28px;
+  --section-pad: 120px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+/* ── Announcement bar ────────────────────────────────────────────── */
+.announce {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  position: relative;
+}
+.announce-track {
+  display: flex;
+  gap: 80px;
+  white-space: nowrap;
+  padding: 12px 0;
+  animation: marquee 38s linear infinite;
+  width: max-content;
+}
+.announce-track span {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+.announce-track span::after {
+  content: "";
+  width: 4px; height: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.6;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.header {
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(6px);
+}
+.header-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.brand {
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-mark {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0a0a0a 50%, var(--sky-2) 50%);
+}
+.nav { display: flex; gap: 32px; justify-self: center; }
+.nav a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav a:hover { opacity: 0.7; }
+.nav a .caret { font-size: 9px; opacity: 0.5; }
+.utility { display: flex; gap: 18px; align-items: center; justify-self: end; }
+.utility a, .utility button {
+  background: none;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0;
+}
+.icon-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover { background: rgba(0,0,0,0.05); }
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 15px;
+  border: 0;
+  transition: transform 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--ink); color: #ffffff; }
+.btn-primary:hover { background: var(--ink-2); }
+.btn-secondary { background: #ffffff; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: #fff; }
+.btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+.btn-ghost:hover { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* ── Layout primitives ───────────────────────────────────────────── */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
+.section { padding-top: 80px; padding-bottom: 80px; }
+.section-pad-lg { padding-top: 120px; padding-bottom: 120px; }
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sky-ink);
+}
+.h1 {
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.96;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.h2 {
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  margin: 0;
+}
+.h3 {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.lede { font-size: 19px; line-height: 1.5; color: var(--muted); max-width: 60ch; }
+.body { font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+.body-muted { color: var(--muted); }
+.small { font-size: 13px; color: var(--muted); }
+
+/* ── Placeholder image system (subtly-striped gradient blocks) ───── */
+.ph {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(135deg, #d6cfc1 0%, #b8a892 100%);
+}
+.ph-meadow { background: linear-gradient(180deg, #c2d4dc 0%, #c4b89a 55%, #8c7a5b 100%); }
+.ph-sky { background: linear-gradient(180deg, #d8e8f1 0%, #c5d8e3 100%); }
+.ph-stone { background: linear-gradient(135deg, #d8d6d0 0%, #b3afa3 100%); }
+.ph-dusk { background: linear-gradient(180deg, #4a5867 0%, #826d56 60%, #524535 100%); }
+.ph-cream { background: linear-gradient(135deg, #ece6d8 0%, #d3c8b1 100%); }
+.ph-deep { background: linear-gradient(135deg, #1a2530 0%, #2a3744 100%); }
+.ph::after {
+  /* film-grain-ish texture */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 4px);
+  pointer-events: none;
+}
+.ph-label {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.35);
+  padding: 4px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.hero {
+  padding: 16px 16px 40px;
+}
+.hero-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 720px;
+  background: linear-gradient(180deg, #b4c8d2 0%, #c4b89a 45%, #6e5e44 100%);
+}
+.hero-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.55) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 60px;
+  height: 100%;
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+}
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.hero-tagline {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.92;
+}
+.hero-pill {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+.hero-pill .dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:#a4d1a4; margin-right:8px; vertical-align: middle; }
+.hero-headline { max-width: 820px; }
+.hero-h1 {
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.92;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin: 0;
+  color: #ffffff;
+}
+.hero-sub {
+  margin-top: 28px;
+  max-width: 520px;
+  font-size: 19px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+}
+.hero-ctas {
+  margin-top: 36px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-card-label {
+  position: absolute;
+  top: 24px; right: 28px;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.3);
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Logo strip / trust ──────────────────────────────────────────── */
+.trust-strip {
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+}
+.trust-item { text-align: center; }
+.trust-item .n {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.trust-item .l {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── Brand story / split ─────────────────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.split-text { padding-right: 24px; }
+.split-text .h2 { margin-top: 18px; }
+.split-text .body { margin-top: 22px; }
+.split-images {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  height: 600px;
+}
+.split-images .ph { height: 100%; }
+
+/* ── Birth to bottle 4-up ────────────────────────────────────────── */
+.section-light {
+  background: var(--card);
+  border-radius: var(--radius);
+  margin: 0 16px;
+  padding: 96px 64px;
+}
+.steps-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step-card .ph {
+  height: 280px;
+}
+.step-card .num {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--sky-ink);
+}
+
+/* ── How the sample works ────────────────────────────────────────── */
+.how {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: stretch;
+}
+.how-image {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 560px;
+}
+.how-image .ph { position: absolute; inset: 0; height: 100%; border-radius: 0; }
+.how-text { padding: 32px 0; }
+.how-text .h2 { margin-top: 18px; }
+.steps-list {
+  margin-top: 40px;
+  display: grid;
+  gap: 8px;
+}
+.step-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule);
+  align-items: flex-start;
+}
+.step-row:last-child { border-bottom: 1px solid var(--rule); }
+.step-row .step-n {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.step-row .step-h {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 4px 0 6px;
+}
+
+/* ── Quote band ──────────────────────────────────────────────────── */
+.quote {
+  margin: 0 16px;
+  border-radius: var(--radius);
+  background: var(--sky);
+  padding: 96px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quote::before {
+  content: """;
+  position: absolute;
+  top: 30px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--sky-ink);
+  font-family: Georgia, serif;
+  opacity: 0.55;
+}
+.quote-text {
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  max-width: 22ch;
+  margin: 0 auto;
+  color: var(--ink);
+}
+.quote-caption {
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sky-ink);
+}
+
+/* ── Form section ────────────────────────────────────────────────── */
+.signup {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+.signup-left { position: sticky; top: 96px; }
+.signup-left .h2 { margin-top: 18px; }
+.signup-left .lede { margin-top: 22px; }
+.signup-perks {
+  margin-top: 36px;
+  display: grid;
+  gap: 14px;
+}
+.perk {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.perk .check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+.form-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 48px;
+  border: 1px solid var(--rule);
+}
+.form-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+}
+.form-card .small { margin-bottom: 28px; }
+.field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input, .field select, .field textarea {
+  font: inherit;
+  font-size: 15px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--rule);
+  background: #ffffff;
+  color: var(--ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px var(--sky);
+}
+.field textarea { min-height: 90px; resize: vertical; font-family: inherit; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field-row .field { margin-bottom: 18px; }
+
+.consents { display: grid; gap: 12px; margin: 22px 0 28px; padding-top: 22px; border-top: 1px solid var(--rule); }
+.consent {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.consent input[type="checkbox"] {
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  appearance: none;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  flex-shrink: 0;
+  background: #fff;
+  transition: background 0.15s ease;
+}
+.consent input[type="checkbox"]:checked {
+  background: var(--ink);
+}
+.consent input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.submit-row .small { margin: 0; }
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.footer {
+  background: #0a0a0a;
+  color: #ffffff;
+  padding: 80px 0 36px;
+  margin-top: 80px;
+}
+.footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-brand { font-size: 28px; font-weight: 800; letter-spacing: 0.02em; }
+.footer-brand-sub { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 12px; max-width: 28ch; }
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.6);
+}
+.footer-col a {
+  display: block;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #ffffff;
+}
+.footer-col a:hover { opacity: 0.6; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 28px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+.disclaimer {
+  margin-top: 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  max-width: 80ch;
+  line-height: 1.6;
+}
+
+/* ── Mobile nav drawer ───────────────────────────────────────────── */
+.menu-toggle { display: none; }
+
+.mdrawer {
+  position: fixed; inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  transition: visibility 0s linear 0.35s;
+}
+.mdrawer.is-open {
+  visibility: visible;
+  transition: visibility 0s linear 0s;
+}
+.mdrawer-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(10,10,10,0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border: 0; padding: 0;
+  cursor: pointer;
+}
+.mdrawer.is-open .mdrawer-backdrop { opacity: 1; }
+.mdrawer-panel {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: var(--card);
+  border-radius: 18px 18px 0 0;
+  padding: 36px 28px 44px;
+  max-height: 72vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+}
+.mdrawer.is-open .mdrawer-panel { transform: translateY(0); }
+.mdrawer-close {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  transform: translateX(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.mdrawer-close:hover { background: #f5f4ef; }
+.mdrawer-nav { display: flex; flex-direction: column; gap: 2px; }
+.mdrawer-nav a {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.mdrawer-nav a:last-child { border-bottom: 0; }
+.mdrawer-cta {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body.mdrawer-open { overflow: hidden; }
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  :root { --section-pad: 80px; }
+  .header-inner { padding: 16px 20px; grid-template-columns: 1fr auto; }
+  .nav { display: none; }
+  .utility .util-account, .utility .util-search { display: none; }
+  .menu-toggle {
+    display: inline-flex;
+    width: 38px; height: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: 0;
+  }
+  .menu-toggle:hover { background: rgba(0,0,0,0.05); }
+  .menu-toggle .bars { display: flex; flex-direction: column; gap: 4px; }
+  .menu-toggle .bars span { display: block; width: 18px; height: 2px; background: var(--ink); }
+
+  .wrap { padding: 0 20px; }
+  .section { padding-top: 56px; padding-bottom: 56px; }
+  .section-pad-lg { padding-top: 72px; padding-bottom: 72px; }
+  .hero { padding: 12px 16px 24px; }
+  .hero-card { min-height: 580px; }
+  .hero-content { padding: 28px 22px; min-height: 580px; }
+  .hero-card-label { top: 16px; right: 16px; }
+  .hero-sub { font-size: 16px; margin-top: 20px; }
+  .hero-ctas { margin-top: 24px; }
+
+  .trust-strip { grid-template-columns: repeat(2, 1fr); padding: 24px 20px; gap: 20px; }
+  .trust-item .n { font-size: 24px; }
+
+  .split { grid-template-columns: 1fr; gap: 32px; }
+  .split-text { padding-right: 0; }
+  .split-images { height: 320px; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; }
+
+  .section-light { padding: 56px 22px; margin: 0 16px; border-radius: var(--radius-sm); }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .step-card .ph { height: 180px; }
+
+  .how { grid-template-columns: 1fr; gap: 32px; }
+  .how-image { min-height: 320px; }
+  .how-text { padding: 0; }
+
+  .quote { margin: 0 16px; padding: 56px 24px; border-radius: var(--radius-sm); }
+  .quote::before { font-size: 64px; top: 18px; }
+
+  .signup { grid-template-columns: 1fr; gap: 36px; }
+  .signup-left { position: static; }
+  .form-card { padding: 28px 22px; border-radius: var(--radius-sm); }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+
+  .footer { padding: 56px 0 28px; }
+  .footer-inner { padding: 0 20px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 36px; }
+  .footer-bottom { font-size: 11px; }
+}
+
+@media (max-width: 520px) {
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn { width: 100%; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Announcement bar ──────────────────────────────────────────── -->
+<div class="announce" aria-label="Announcements">
+  <div class="announce-track">
+    <span>Free shipping on all sample boxes</span>
+    <span>Sourced from a single family ranch in Wyoming</span>
+    <span>Limited quantities — sign up below</span>
+    <span>Free shipping on all sample boxes</span>
+    <span>Sourced from a single family ranch in Wyoming</span>
+    <span>Limited quantities — sign up below</span>
+  </div>
+</div>
+
+<!-- ── Header ────────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="brand" aria-label="Roan home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>ROAN</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#story">Our Story <span class="caret">▾</span></a>
+      <a href="#blend">The Blend</a>
+      <a href="#how">How It Works</a>
+      <a href="#signup">Samples</a>
+    </nav>
+    <div class="utility">
+      <button class="icon-btn util-search" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn util-account" aria-label="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </button>
+      <a href="#signup" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">Get a sample</a>
+      <button class="menu-toggle" aria-label="Open menu"><span class="bars"><span></span><span></span><span></span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ──────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-card ph-meadow">
+    <span class="hero-card-label">PHOTO · Bar W Ranch · Wyoming · golden hour landscape</span>
+    <div class="hero-content">
+      <div class="hero-top">
+        <div class="hero-tagline">Bar W Ranch — Wyoming</div>
+        <div class="hero-pill"><span class="dot"></span>Sample program open</div>
+      </div>
+      <div class="hero-headline">
+        <h1 class="hero-h1">From our land,<br/>into your hands.</h1>
+        <p class="hero-sub">Roan is a grass-fed organ blend from a single family ranch. Try a jar before it's on the shelf — we're sending samples to a small group of curious people.</p>
+        <div class="hero-ctas">
+          <a href="#signup" class="btn btn-primary">Request a sample →</a>
+          <a href="#story" class="btn btn-ghost">Read our story</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Trust strip ──────────────────────────────────────────────── -->
+<div class="trust-strip" aria-label="At a glance">
+  <div class="trust-item"><div class="n">100%</div><div class="l">Grass-fed · ranch raised</div></div>
+  <div class="trust-item"><div class="n">Single</div><div class="l">Family ranch · Wyoming</div></div>
+  <div class="trust-item"><div class="n">3rd-party</div><div class="l">Lab tested</div></div>
+  <div class="trust-item"><div class="n">No</div><div class="l">Fillers · ever</div></div>
+</div>
+
+<!-- ── Brand story ──────────────────────────────────────────────── -->
+<section class="section section-pad-lg wrap" id="story">
+  <div class="split">
+    <div class="split-text">
+      <div class="eyebrow">The name</div>
+      <h2 class="h2">A roan is two colors woven into one coat.</h2>
+      <p class="body">Not blended. Side by side, permanent, never fading with age. A working animal that's also known for its beauty.</p>
+      <p class="body">Roan is the consumer label of Bar W, our family ranch. The animals these capsules come from never leave our land — born here, raised on our grass, finished on our grass, harvested with care, formulated and packed for you.</p>
+      <a href="#blend" class="btn btn-secondary" style="margin-top: 28px;">About the blend →</a>
+    </div>
+    <div class="split-images">
+      <div class="ph ph-cream"><span class="ph-label">Photo · hand on coat</span></div>
+      <div class="ph ph-stone"><span class="ph-label">Photo · capsules in palm</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Birth to bottle ──────────────────────────────────────────── -->
+<section class="section" id="blend">
+  <div class="section-light">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+      <div>
+        <div class="eyebrow">Birth to bottle</div>
+        <h2 class="h2" style="margin-top: 18px;">Four steps. One ranch.</h2>
+      </div>
+      <p class="lede" style="margin: 0;">Most supplement supply chains pass through six companies on three continents. Ours doesn't leave the property line.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="ph ph-meadow"><span class="ph-label">Photo · cattle on pasture</span></div>
+        <div class="num">01 · Born here</div>
+        <h3 class="h3">Calved on Bar W land</h3>
+        <p class="small">Documented lineage. Every animal traceable to a pasture and a season.</p>
+      </div>
+      <div class="step-card">
+        <div class="ph ph-sky"><span class="ph-label">Photo · open range</span></div>
+        <div class="num">02 · Raised on our grass</div>
+        <h3 class="h3">No feedlot, ever</h3>
+        <p class="small">Forage-finished on Wyoming pasture. No commodity supply chain.</p>
+      </div>
+      <div class="step-card">
+        <div class="ph ph-stone"><span class="ph-label">Photo · hands at work</span></div>
+        <div class="num">03 · Harvested with care</div>
+        <h3 class="h3">Small-batch, on ranch</h3>
+        <p class="small">Processing kept close to home. Standards we'd put our name to — and did.</p>
+      </div>
+      <div class="step-card">
+        <div class="ph ph-cream"><span class="ph-label">Photo · jar &amp; capsules</span></div>
+        <div class="num">04 · For you</div>
+        <h3 class="h3">No fillers. Lab tested.</h3>
+        <p class="small">Encapsulated to a single SKU. Third-party tested every batch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How the sample works ─────────────────────────────────────── -->
+<section class="section section-pad-lg wrap" id="how">
+  <div class="how">
+    <div class="how-image">
+      <div class="ph ph-dusk"><span class="ph-label">Photo · jar on a kitchen counter, morning light</span></div>
+    </div>
+    <div class="how-text">
+      <div class="eyebrow">How the sample works</div>
+      <h2 class="h2">Three small steps over three months.</h2>
+      <p class="lede" style="margin-top: 22px;">No catch, no card on file. We send you a jar. You take it. You tell us what you notice.</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-h">Sign up</div>
+            <p class="small">Fill the form below. If we're a fit, we'll email you to confirm shipping. No card required.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-h">Take it daily</div>
+            <p class="small">Three capsules a day. A simple ritual card shows you how — best with your first meal.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-h">Tell us what you notice</div>
+            <p class="small">A couple of quick check-ins by email. Honest answers — that's the point.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quote band ──────────────────────────────────────────────── -->
+<section class="section">
+  <div class="quote">
+    <p class="quote-text">You are the source of your own strength.</p>
+    <div class="quote-caption">The Roan promise</div>
+  </div>
+</section>
+
+<!-- ── Signup form ──────────────────────────────────────────────── -->
+<section class="section section-pad-lg wrap" id="signup">
+  <div class="signup">
+    <div class="signup-left">
+      <div class="eyebrow">Get a sample</div>
+      <h2 class="h2">Try Roan, on us.</h2>
+      <p class="lede">Fill this out and we'll email you back within a week. Quantities are limited, so we'll work through requests in the order they arrive.</p>
+
+      <div class="signup-perks">
+        <div class="perk"><span class="check">✓</span><span><strong>A full jar</strong> — not a single-dose sachet.</span></div>
+        <div class="perk"><span class="check">✓</span><span><strong>Free shipping</strong> within the U.S.</span></div>
+        <div class="perk"><span class="check">✓</span><span><strong>No subscription</strong>. No card required to apply.</span></div>
+        <div class="perk"><span class="check">✓</span><span><strong>Email check-ins</strong> only when something matters.</span></div>
+      </div>
+    </div>
+
+    <form class="form-card" id="klaviyo-form" novalidate>
+      <h3>Sign up below.</h3>
+      <p class="small">This form is processed by Klaviyo. By submitting, you agree to our privacy policy.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="fname">First name</label>
+          <input id="fname" name="first_name" type="text" required autocomplete="given-name" />
+        </div>
+        <div class="field">
+          <label for="lname">Last name</label>
+          <input id="lname" name="last_name" type="text" required autocomplete="family-name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 ___ ___ ____" />
+        </div>
+        <div class="field">
+          <label for="state">State</label>
+          <select id="state" name="state" required>
+            <option value="">Select your state…</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+            <option>Arkansas</option><option>California</option><option>Colorado</option>
+            <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+            <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+            <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+            <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+            <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+            <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+            <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+            <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+            <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+            <option>Texas</option><option>Utah</option><option>Vermont</option>
+            <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Wisconsin</option><option>Wyoming</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="why">What made you curious about Roan? (optional)</label>
+        <textarea id="why" name="curiosity" placeholder="A sentence is plenty."></textarea>
+      </div>
+
+      <div class="consents">
+        <label class="consent">
+          <input type="checkbox" name="screening" required />
+          <span>I'm 18 or older, and I'm not pregnant, nursing, or taking medications that interact with iron, vitamin A, or copper.</span>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="sms" />
+          <span>OK to text me shipping updates and the occasional check-in. Reply STOP to opt out anytime. Standard rates apply.</span>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="email_opt_in" checked />
+          <span>Add me to the Roan email list. Unsubscribe anytime.</span>
+        </label>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary">Send me a sample →</button>
+        <span class="small">U.S. only · No card required</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">ROAN</div>
+        <div class="footer-brand-sub">A grass-fed organ blend from Bar W Ranch — a single family operation in Wyoming.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">The Blend</a>
+        <a href="#">Samples</a>
+        <a href="#">Subscribe &amp; save</a>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="#">Our Story</a>
+        <a href="#">The Ranch</a>
+        <a href="#">Sourcing</a>
+        <a href="#">Lab Results</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Contact</a>
+        <a href="#">Shipping</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Bar W Ranch, LLC · Wyoming</div>
+      <div>Privacy · Terms · Accessibility</div>
+    </div>
+    <p class="disclaimer">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before starting any new supplement.</p>
+  </div>
+</footer>
+
+<!-- ── Mobile nav drawer ─────────────────────────────────────────── -->
+<div class="mdrawer" id="mdrawer" aria-hidden="true">
+  <button class="mdrawer-backdrop" type="button" aria-label="Close menu" data-mdrawer-close></button>
+  <div class="mdrawer-panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="mdrawer-close" type="button" aria-label="Close menu" data-mdrawer-close>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+    </button>
+    <nav class="mdrawer-nav" aria-label="Mobile primary">
+      <a href="#story">Our Story</a>
+      <a href="#blend">The Blend</a>
+      <a href="#how">How It Works</a>
+      <a href="#signup">Samples</a>
+    </nav>
+    <div class="mdrawer-cta">
+      <a href="#signup" class="btn btn-primary">Get a sample →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Klaviyo wiring ────────────────────────────────────────────────
+  // Public Klaviyo Company ID (safe to expose — it's the public site key).
+  const KLAVIYO_COMPANY_ID = 'U6j8yp';
+  // List: "Roan - Pilot Program"
+  const KLAVIYO_LIST_ID    = 'SxVpGW';
+
+  // ── Mobile drawer toggle ──────────────────────────────────────────
+  (function () {
+    const drawer = document.getElementById('mdrawer');
+    const toggle = document.querySelector('.menu-toggle');
+    if (!drawer || !toggle) return;
+
+    const open = () => {
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mdrawer-open');
+    };
+    const close = () => {
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mdrawer-open');
+    };
+
+    toggle.addEventListener('click', open);
+    drawer.querySelectorAll('[data-mdrawer-close]').forEach((el) => el.addEventListener('click', close));
+    drawer.querySelectorAll('.mdrawer-nav a, .mdrawer-cta a').forEach((a) => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+
+  // Smooth scroll on hash links
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    });
+  });
+
+  // Normalize a US phone string to E.164 (+1XXXXXXXXXX). Returns null if not 10/11 digits.
+  function toE164US(raw) {
+    if (!raw) return null;
+    const digits = raw.replace(/\D/g, '');
+    if (digits.length === 10) return '+1' + digits;
+    if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
+    return null;
+  }
+
+  const form = document.getElementById('klaviyo-form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const fd = new FormData(form);
+      const first_name = (fd.get('first_name') || '').toString().trim();
+      const last_name  = (fd.get('last_name')  || '').toString().trim();
+      const email      = (fd.get('email')      || '').toString().trim();
+      const state      = (fd.get('state')      || '').toString().trim();
+      const curiosity  = (fd.get('curiosity')  || '').toString().trim();
+      const phoneRaw   = (fd.get('phone')      || '').toString().trim();
+      const phoneE164  = toE164US(phoneRaw);
+      const smsOptIn   = !!fd.get('sms');
+      const emailOptIn = !!fd.get('email_opt_in');
+      const screening  = !!fd.get('screening');
+
+      if (!screening) {
+        btn.textContent = orig;
+        btn.disabled = false;
+        alert('Please confirm the eligibility checkbox to continue.');
+        return;
+      }
+
+      const subscriptions = {};
+      if (emailOptIn) subscriptions.email = { marketing: { consent: 'SUBSCRIBED' } };
+      if (smsOptIn && phoneE164) subscriptions.sms = { marketing: { consent: 'SUBSCRIBED' } };
+
+      const profileAttrs = {
+        email,
+        first_name,
+        last_name,
+        properties: {
+          state,
+          curiosity,
+          source: 'Sample Program Landing Page',
+          eligibility_confirmed: screening,
+        },
+      };
+      if (phoneE164) profileAttrs.phone_number = phoneE164;
+      if (Object.keys(subscriptions).length) profileAttrs.subscriptions = subscriptions;
+
+      const payload = {
+        data: {
+          type: 'subscription',
+          attributes: {
+            custom_source: 'Sample Program Landing Page',
+            profile: { data: { type: 'profile', attributes: profileAttrs } },
+          },
+          relationships: { list: { data: { type: 'list', id: KLAVIYO_LIST_ID } } },
+        },
+      };
+
+      try {
+        const res = await fetch(
+          'https://a.klaviyo.com/client/subscriptions/?company_id=' + encodeURIComponent(KLAVIYO_COMPANY_ID),
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', revision: '2024-10-15' },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        if (!res.ok) {
+          let detail = '';
+          try { detail = (await res.text()) || ''; } catch (_) {}
+          console.error('Klaviyo error', res.status, detail);
+          throw new Error('Klaviyo responded ' + res.status);
+        }
+
+        form.innerHTML = '<div style="text-align:center; padding: 32px 0;">'
+          + '<div style="font-size: 48px;">✓</div>'
+          + '<h3 style="margin-top:16px;">Thank you.</h3>'
+          + '<p class="small" style="margin-top:12px; max-width: 40ch; margin-left: auto; margin-right: auto;">'
+          + 'We received your request and will email you within a week.</p></div>';
+      } catch (err) {
+        console.error(err);
+        btn.textContent = orig;
+        btn.disabled = false;
+        alert("Sorry — we couldn't submit that. Please double-check your email and try again, or write to support@barwprimal.com.");
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
