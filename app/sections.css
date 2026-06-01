@@ -194,15 +194,11 @@
 /* ── Origin ────────────────────────────────────────────── */
 .origin {
   position: relative;
-  padding-block: clamp(56px, 7vh, 104px);
+  padding-block: clamp(56px, 8vh, 120px);
   background: var(--ink);
   color: #f4f2ec;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
-.origin > .origin-content { width: 100%; }
 .origin-bg {
   position: absolute;
   inset: -12% 0 -12% 0;
@@ -214,18 +210,19 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(40px, 6vw, 90px);
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: clamp(36px, 5vw, 88px);
   align-items: center;
 }
-.origin-copy { max-width: 30ch; }
-.origin-title { margin-top: 20px; color: #f4f2ec; }
-.origin-body { margin-top: 22px; color: rgba(244, 242, 236, 0.78); }
+.origin-copy { max-width: 36rem; }
+.origin-title { margin-top: 18px; color: #f4f2ec; font-size: clamp(46px, 7vw, 96px); line-height: 1.0; }
+.origin-body { margin-top: 24px; max-width: 38ch; color: rgba(244, 242, 236, 0.78); }
 .origin-jar { display: flex; justify-content: center; will-change: transform; }
 
 /* CSS-rendered jar stand-in */
 .jar {
-  width: clamp(180px, 22vw, 250px);
+  width: clamp(240px, 27vw, 380px);
   filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5));
 }
 .jar-lid {
@@ -358,13 +355,9 @@
 
 /* ── Pillars ───────────────────────────────────────────── */
 .pillars {
-  padding-block: clamp(40px, 6vh, 84px);
+  padding-block: clamp(44px, 6vh, 88px);
   background: var(--paper-2);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
-.pillars > .wrap { width: 100%; }
 .pillars-head { max-width: 640px; }
 .pillars-head .h2 { margin-top: 14px; }
 .pillars-head .h2 .accent { display: block; }
@@ -392,15 +385,14 @@
 .pillars-stage {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(36px, 5vw, 72px);
   align-items: center;
 }
 .pillars-visual {
-  aspect-ratio: 4 / 5;
-  height: clamp(260px, 36vh, 400px);
-  width: auto;
-  justify-self: center;
+  aspect-ratio: 5 / 4;
+  width: 100%;
+  max-height: 39vh;
 }
 .pillars-copy { animation: fadeUp 0.5s var(--ease-out); }
 .pillars-copy .h3 { font-size: clamp(24px, 3vw, 34px); }
@@ -615,7 +607,7 @@
   .origin, .twoup, .transition, .steps, .testimonials, .sample, .faq, .pillars { min-height: 0; display: block; }
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
   .pillars-stage { grid-template-columns: 1fr; }
-  .pillars-visual { height: auto; width: 100%; justify-self: stretch; }
+  .pillars-visual { max-height: none; width: 100%; justify-self: stretch; }
   .sample-inner { grid-template-columns: 1fr; }
   .sample-visual { height: auto; width: 100%; justify-self: stretch; }
   .faq-inner { grid-template-columns: 1fr; }
